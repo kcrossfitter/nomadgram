@@ -20,10 +20,17 @@ class Image(TimestampModel):
     file = models.ImageField()
     location = models.CharField(max_length=140)
     caption = models.TextField()
-    creator = models.ForeignKey(user_models.User, null=True)
+    creator = models.ForeignKey(
+        user_models.User,
+        null=True,
+        related_name='images'
+    )
 
     def __str__(self):
         return '{}-{}'.format(self.location, self.caption)
+
+    class Meta:
+        ordering = ['-created_at']
 
 
 @python_2_unicode_compatible
