@@ -49,6 +49,7 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'rest_framework',
 ]
 
 # Apps specific for this project go here.
@@ -56,6 +57,8 @@ LOCAL_APPS = [
     # custom users app
     'nomadgram.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'nomadgram.images.apps.ImagesConfig',
+    # 'images'
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -111,7 +114,7 @@ MANAGERS = ADMINS
 # Uses django-environ to accept uri format
 # See: https://django-environ.readthedocs.io/en/latest/#supported-types
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///nomadgram'),
+    'default': env.db('DATABASE_URL', default='postgres://postgres:lion0787@localhost:5432/nomadgram'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
