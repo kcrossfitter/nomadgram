@@ -34,6 +34,11 @@ urlpatterns = [
         name='user_search'
     ),
     url(
+        regex=r'^login/facebook/$',
+        view=views.FacebookLogin.as_view(),
+        name='fb_login'
+    ),
+    url(
         regex=r'(?P<username>\w+)/password/$',
         view=views.ChangePassword.as_view(),
         name='change_password'
@@ -43,5 +48,4 @@ urlpatterns = [
         view=views.UserProfile.as_view(),
         name='user_profile'
     ),
-
 ]

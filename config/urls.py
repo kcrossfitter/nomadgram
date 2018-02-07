@@ -6,6 +6,8 @@ from rest_framework_jwt.views import obtain_jwt_token
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from nomadgram import views
+
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
@@ -19,6 +21,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
+    url(r'^', views.ReactAppView.as_view()),    # catch all view
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
