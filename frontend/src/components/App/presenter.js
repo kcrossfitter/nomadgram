@@ -1,8 +1,10 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import Footer from 'components/Footer'
-// import styles from './styles.scss'
+import Auth from 'components/Auth'
+import './styles.scss'
 
 const App = (props) => [
   // nav
@@ -13,6 +15,10 @@ const App = (props) => [
   <Footer key={3} />
 ]
 
+App.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired
+}
+
 const PrivateRoutes = (props) => (
   <Switch>
     <Route exact path='/' render={() => "Feed"} />
@@ -22,23 +28,9 @@ const PrivateRoutes = (props) => (
 
 const PublicRoutes = (props) => (
   <Switch>
-    <Route exact path='/' render={() => "Login"} />
+    <Route exact path='/' component={Auth} />
     <Route exact path='/forgot' render={() => "Password"} />
   </Switch>
 )
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className={styles.App}>
-//         <Switch>
-//           <Route exact path='/' component={() => 'hello'} />
-//           <Route path='/login' component={() => 'login'} />
-//         </Switch>
-//         <Footer />
-//       </div>
-//     );
-//   }
-// }
 
 export default App
