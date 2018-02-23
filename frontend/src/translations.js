@@ -1,5 +1,28 @@
 export const translations = {
-  es: {
-    "Login in": "Iniciar Sesibon"
-  }
+  'kr': {
+    'About Us': 'Nomadgram 정보',
+    'Support': '지원',
+    'Blog': '블로그',
+    'Press': '홍보',
+    'API': 'API',
+    'Jobs': '채용 정보',
+    'Privacy': '개인정보처리방침',
+    'Terms': '약관',
+    'Directory': '디렉터리',
+    'Language': '언어',
+    'Username': '사용자 이름',
+    'password': '패스워드',
+    'Log in': '로그인',
+    'Login with Facebook': '페이스북으로 로그인',
+    'Forgot password?': '',
+    'Signup to see photos and videos from your friends.': '친구들의 사진과 동영상을 보려면 가입하세요',
+    'Email': '이메일',
+    'Full Name': '이름',
+    'Password': '패스워드',
+    'Sign up': '가입',
+    'By signing up, you agree to our': '',
+    'terms & Privacy Policy': '',
+  },
+  'options': {
+  },
 }
