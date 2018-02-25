@@ -190,24 +190,35 @@ class CommentOnImage(APIView):
             )
 
 
-""" Delete a comment that I make """
+"""
+Delete a comment that I make
+url: images/comments/comment_id/
+"""
 class Comment(APIView):
 
     def delete(self, request, comment_id, format=None):
 
-        # Find the user who created this comment
+        # Find the user who requested 'delete'
         user = request.user
 
         # Find the comment of which id=comment_id and creator=user
         # Delete the comment
         try:
-            comment = models.Comment.objects.get(id=comment_id, creator=user)
+            comment = models.Comment.objects.get(
+                id=comment_id,
+                creator=user
+            )
             comment.delete()
+
             return Response(status=status.HTTP_204_NO_CONTENT)
+
         except models.Comment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 
+"""
+url: images/search/?hashtags=abc,def ghi,lmn
+"""
 class Search(APIView):
 
     def get(self, request, format=None):
@@ -223,9 +234,14 @@ class Search(APIView):
                 tags__name__in=hashtags
             ).distinct()
 
-            serializer = serializers.CountImageSerializer(images, many=True)
+            serializer = serializers.CountImageSerializer(
+                images, many=True
+            )
 
-            return Response(data=serializer.data, status=status.HTTP_200_OK)
+            return Response(
+                data=serializer.data,
+                status=status.HTTP_200_OK
+            )
 
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -258,7 +274,7 @@ class ModerateComments(APIView):
 
 class ImageDetail(APIView):
 
-    def find_own_image(self, image_id, user):
+    def find_own_image(self, image_id, user=None):
         try:
             image = models.Image.objects.get(id=image_id, creator=user)
             return image
@@ -268,9 +284,9 @@ class ImageDetail(APIView):
 
     def get(self, request, image_id, format=None):
 
-        user = request.user
+        # user = request.user
 
-        image = self.find_own_image(image_id, user)
+        image = self.find_own_image(image_id)
 
         if image is None:
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -289,6 +305,10 @@ class ImageDetail(APIView):
 
         if image is None:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        serializer = serializers.InputImageSerializer(
+            image, data=request.data, partial=True
+        )
 
         if serializer.is_valid():
 

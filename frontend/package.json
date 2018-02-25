@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
@@ -38,6 +39,7 @@
     "react": "^16.2.0",
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.2.0",
+    "react-facebook-login": "^4.0.0",
     "react-ionicons": "^2.1.6",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
