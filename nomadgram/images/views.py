@@ -38,7 +38,9 @@ class Images(APIView):
             reverse=True
         )
 
-        serializer = serializers.ImageSerializer(sorted_list, many=True)
+        serializer = serializers.ImageSerializer(
+            sorted_list, many=True, context={'request': request}
+        )
 
         return Response(serializer.data)
 
@@ -291,7 +293,9 @@ class ImageDetail(APIView):
         if image is None:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        serializer = serializers.ImageSerializer(image)
+        serializer = serializers.ImageSerializer(
+            image, context={'request': request}
+        )
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
